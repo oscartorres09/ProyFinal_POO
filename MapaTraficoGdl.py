@@ -9,7 +9,8 @@ st.set_page_config(
 
 st.title("Trafico por hora en la ZMG")
 
-st.sidebar.markdown("Musica")
+st.sidebar.markdown("Proyecto Final POO")
+st.sidebar.markdown("Oscar Torres")
 
 try:
     st.audio("POOsong.mp3", format = "audio/mp3")
