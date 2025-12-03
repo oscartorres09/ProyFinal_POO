@@ -12,10 +12,13 @@ st.title("Trafico por hora en la ZMG")
 st.sidebar.markdown("Proyecto Final POO")
 st.sidebar.markdown("Oscar Torres")
 
+# Musica
 try:
     st.audio("POOsong.mp3", format = "audio/mp3")
 except:
     st.sidebar.warning("No se encontro el archivo de musica")
+
+# Definicion de colores
 
 def ColorPuntos(color_texto):
     if color_texto == 'red_wine':
@@ -28,8 +31,11 @@ def ColorPuntos(color_texto):
         return [24,217,30]
     else:
         return [150,150,150]
-    
+
+# Hacer mas fluida la animacion
 @st.cache_data
+
+# Lectura de datos
 def CargarDatos(ruta):
     try:
         # Leer archivo
@@ -52,8 +58,10 @@ if datos_trafico is None:
     st.error(f"No se encontro el archivo: {ARCHIVO}")
     st.stop()
 
+# Cambiar texto a fecha y redondear
 horas_unicas = sorted(datos_trafico['timestamp'].dt.floor('h').unique())
 
+# Sobre escribir sobre lo que hay
 TextoHora = st.empty()
 MapaContenedor = st.empty()
 
@@ -72,13 +80,13 @@ elif OpcionVelocidad == "Rapido":
 elif OpcionVelocidad == "Muy Rapido":
     tiempo_espera = 0.05
 
-
+# Boton de comenzar
 if st.button ('Ver trafico'):
     BarraProgreso = st.progress(0)
     TotalPasos = len(horas_unicas)
 
     for i, hora_actual in enumerate(horas_unicas):
-        TextoHora.subheader(f"Hora: {hora_actual}")
+        TextoHora.subheader(f"Fecha y hora: {hora_actual}")
 
         DatosHora = datos_trafico[datos_trafico['timestamp'].dt.floor('h') == hora_actual]
 
